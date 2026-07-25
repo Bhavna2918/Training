@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --color-primary: #635bff;
+  --color-secondary: #8b7cff;
+  --color-text-main: #111827;
+  --color-text-secondary: #6b7280;
+  --color-border-subtle: #e5e7eb;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
