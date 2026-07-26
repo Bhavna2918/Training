@@ -6,12 +6,12 @@ import { HeroImage } from './HeroImage';
 
 export const Hero = () => {
   return (
-    <section className="relative pt-20 pb-16 lg:pt-28 lg:pb-24 overflow-hidden bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] items-center gap-12 w-full">
-          
-          {/* Left Column - Content */}
-          <div className="w-full flex flex-col items-center text-center lg:items-start lg:text-left z-10 justify-center">
+    <section className="relative pt-32 pb-20 overflow-hidden bg-[#FAFAFA]">
+      <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/50 to-transparent pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-12 lg:gap-8 items-center">
+          {/* Text Content */}
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left z-10 animate-fade-in-left">
             <HeroBadge />
             <HeroTitle />
             <HeroDescription />

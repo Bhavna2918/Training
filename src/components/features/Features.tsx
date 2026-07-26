@@ -43,7 +43,13 @@ export const Features = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <FeatureCard key={index} {...feature} />
+            <div 
+              key={index}
+              className="animate-fade-in-up"
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
+              <FeatureCard {...feature} />
+            </div>
           ))}
         </div>
       </div>

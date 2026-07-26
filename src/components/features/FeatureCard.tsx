@@ -9,8 +9,8 @@ interface FeatureCardProps {
 
 export const FeatureCard = ({ icon, iconBg, title, description }: FeatureCardProps) => {
   return (
-    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex items-start gap-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 group w-full">
-      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-110 ${iconBg}`}>
+    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex items-start gap-5 transition-all duration-300 ease-out hover:shadow-xl hover:-translate-y-2 hover:border-[#5B52F5] hover:scale-[1.02] group w-full">
+      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:rotate-3 ${iconBg}`}>
         {icon}
       </div>
       <div className="flex flex-col text-left pt-0.5">
