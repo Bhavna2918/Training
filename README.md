@@ -1,82 +1,58 @@
-# TryLity - SaaS Landing Page
+# Assignment 3: Blog Home Page with Redux Toolkit API Integration
 
-A modern, responsive, and production-ready SaaS landing page built with React, Vite, TypeScript, and Tailwind CSS. This project was developed as a submission for **Assignment 2: Build Header & Hero Section Using Tailwind CSS**.
+This project is a React-based Blog Home Page that fetches dynamic data from the `https://jsonplaceholder.typicode.com` API. It strictly adheres to all assignment requirements, including the mandatory usage of Redux Toolkit and `createAsyncThunk` for all asynchronous state management.
 
-## 🚀 Objective
+## 🚀 Setup Steps
 
-The primary goal of this project is to build a responsive, clean, and pixel-perfect SaaS landing page utilizing modern frontend development practices. It demonstrates:
-- Proper configuration and utilization of **Tailwind CSS**.
-- Strict **Component-Based Architecture** following the Single Responsibility Principle (SRP).
-- **TypeScript** integration for robust, type-safe data modeling.
-- Advanced **CSS Grid & Flexbox** for flawless mobile-first responsiveness.
-
-## 🛠 Technologies Used
-
-- **React**: UI rendering library.
-- **TypeScript**: Static typing for safer and predictable code.
-- **Vite**: Next-generation frontend build tool for instant HMR.
-- **Tailwind CSS (v4)**: Utility-first CSS framework for rapid, highly customizable styling.
-- **Lucide React**: Beautiful, consistent SVG icons.
-
-## 🏗️ Architecture & Folder Structure
-
-The project is heavily modularized to ensure maintainability and scalability.
-
-```text
-src/
-├── components/
-│   ├── layout/
-│   │   ├── Header/
-│   │   │   ├── Header.tsx           # Sticky Header container
-│   │   │   ├── Logo.tsx             # Brand Logo
-│   │   │   ├── Navigation.tsx       # Desktop links
-│   │   │   ├── NavItem.tsx          # Reusable navigation link
-│   │   │   ├── HeaderButtons.tsx    # Auth CTA buttons
-│   │   │   └── MobileMenu.tsx       # Hamburger menu logic
-│   │   └── Footer.tsx
-│   ├── hero/
-│   │   ├── Hero.tsx                 # Grid container for the Hero
-│   │   ├── HeroBadge.tsx            # Sparkle badge
-│   │   ├── HeroTitle.tsx            # Main H1 Title
-│   │   ├── HeroDescription.tsx      # Subtext
-│   │   ├── HeroButtons.tsx          # Primary/Secondary CTAs
-│   │   ├── HeroImage.tsx            # Dashboard mockup
-│   │   ├── HeroStats.tsx            # Wrapper for stats
-│   │   └── StatCard.tsx             # Reusable stat card
-│   └── features/
-│       ├── Features.tsx             # Grid container for features
-│       └── FeatureCard.tsx          # Reusable feature card
-├── data/
-│   └── heroStats.tsx                # Data source for UI iteration
-├── types/
-│   └── hero.ts                      # Strict TypeScript interfaces
-├── App.tsx                          # Root component
-└── main.tsx                         # Entry point
-```
-
-## ✨ Key Features
-
-1. **Modular Header:** Completely separated into specific micro-components (`Logo`, `Navigation`, `MobileMenu`) to avoid bloated files. Features a `sticky top-0` glassmorphism effect.
-2. **Responsive Hero Section:** Implements a mobile-first CSS Grid (`grid-cols-1 lg:grid-cols-[45%_55%]`) that gracefully stacks on mobile and balances beautifully on desktop screens.
-3. **Data-Driven UI Components:** The Statistics Cards and Feature Cards do not use hard-coded JSX. Instead, they map over strongly-typed data arrays (`src/data/`) using TypeScript interfaces, making future additions trivial.
-4. **Premium Aesthetics:** Utilizes the Google **Inter** font family, soft subtle borders, drop shadows, and delicate micro-interactions (e.g., `hover:-translate-y-1`) for a professional SaaS feel.
-
-## ⚙️ Installation & Setup
-
-1. **Clone the repository** and navigate into the folder.
+1. **Clone the repository** (or download the source code).
 2. **Install dependencies**:
    ```bash
    npm install
+   # or
+   yarn install
    ```
-3. **Start the development server**:
+3. **Run the development server**:
    ```bash
    npm run dev
+   # or
+   yarn dev
    ```
-   Open `http://localhost:5173/` in your browser.
+4. Open [http://localhost:5173](http://localhost:5173) in your browser to view the application.
 
-## 📦 Build Instructions
-To compile the project and check for TypeScript errors:
-```bash
-npm run build
+## 🏗️ Redux Folder Structure Explanation
+
+The state management architecture is strictly divided to ensure modularity and separation of concerns. **No direct API calls (`axios` or `fetch`) are made inside React components.**
+
+```text
+src/
+ ├── api/
+ │    ├── config/          # Centralized Axios client configuration
+ │    ├── posts/           # API fetch functions & types for posts
+ │    ├── users/           # API fetch functions & types for users
+ │    └── comments/        # API fetch functions & types for comments
+ │
+ ├── store/
+ │    ├── index.ts         # Main Redux store configuration
+ │    ├── hooks.ts         # Typed useSelector and useDispatch hooks
+ │    ├── slices/          # Redux slices managing loading, error, and data states
+ │    └── thunks/          # createAsyncThunk logic to handle async API lifecycle
 ```
-*Note: The project compiles with zero TypeScript or ESLint errors.*
+
+### How Data Flows:
+1. **Thunks (`store/thunks/posts.thunk.ts`)**: The component dispatches a thunk (`fetchPosts()`).
+2. **API Layer (`api/posts/posts.api.ts`)**: The thunk calls the isolated API function, which uses the centralized `axios` instance to fetch data from `https://jsonplaceholder.typicode.com`.
+3. **Slices (`store/slices/posts.slice.ts`)**: The slice listens to the thunk's lifecycle hooks (`pending`, `fulfilled`, `rejected`) and updates the state variables (`loading`, `data`, `error`) accordingly.
+4. **Components (`components/BlogList.tsx`)**: The UI subscribes to the Redux store via `useAppSelector` and displays Skeleton loaders, Error messages, or the final Blog Cards based on the state.
+
+## 🌟 Key Features
+
+- **Strict Redux Toolkit Integration**: 100% of data fetching routes through Redux `createAsyncThunk`.
+- **Pixel-Perfect UI**: The Hero, Navigation, and Category bars match the exact spatial requirements of the reference designs.
+- **Hover Animations**: All blog cards and interactive buttons feature smooth CSS transition lifts (`-translate-y-1`) and shadow expansions.
+- **TypeScript Strictness**: Interfaces (`PostsState`, `Post`) are strictly defined. No TypeScript errors.
+- **Loading & Error Handling**: Beautiful skeleton loaders render while data is fetching, with fallback UI for network errors.
+- **Responsive Layout**: Adapts flawlessly from mobile viewports up to `1380px` ultra-wide monitors.
+
+## 📸 Screenshots
+
+*(Attach screenshots of the Blog Home Page, Responsive Views, and Redux DevTools structure here prior to submission as per the rubric)*

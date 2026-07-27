@@ -2,11 +2,12 @@
 
 @theme {
   --font-sans: "Inter", sans-serif;
-  --color-primary: #635bff;
-  --color-secondary: #8b7cff;
+  --color-primary: #6D28D9;
+  --color-primary-hover: #5B21B6;
   --color-text-main: #111827;
-  --color-text-secondary: #6b7280;
-  --color-border-subtle: #e5e7eb;
+  --color-text-secondary: #6B7280;
+  --color-border-subtle: #E5E7EB;
+  --color-bg-light: #F8F8FC;
 
   --animate-fade-in-left: fade-in-left 0.8s ease-out both;
   --animate-fade-in-right: fade-in-right 0.8s ease-out both;
