@@ -106,8 +106,8 @@ export const BlogList: React.FC<BlogListProps> = ({
           return (
             <div key={post.id} className="animate-fade-in-up" style={{ animationDelay: `${(index % 10) * 50}ms` }}>
               <BlogCard 
-                title={post.title}
-                description={post.body}
+                title={staticData.title}
+                description={staticData.description}
                 category={staticData.category}
                 date={staticData.date}
                 readTime={staticData.readTime}
