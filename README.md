@@ -1,58 +1,62 @@
-# Assignment 3: Blog Home Page with Redux Toolkit API Integration
+# Vite React + TypeScript Project
 
-This project is a React-based Blog Home Page that fetches dynamic data from the `https://jsonplaceholder.typicode.com` API. It strictly adheres to all assignment requirements, including the mandatory usage of Redux Toolkit and `createAsyncThunk` for all asynchronous state management.
+A professional, clean, and beginner-friendly React application built using Vite and TypeScript.
 
-## 🚀 Setup Steps
+## Project Overview
+This project demonstrates React best practices, clean architecture, and reusable component design. It is structured to be easily understandable while incorporating modern tooling and features like strict TypeScript typing, responsive CSS, and client-side routing.
 
-1. **Clone the repository** (or download the source code).
+## Features
+- **Clean Architecture**: Separation of components, pages, and styles.
+- **Type Safety**: Enforced through strict TypeScript configurations.
+- **Responsiveness**: A layout that looks great on all devices.
+- **Modern Aesthetics**: Soft colors, modern typography, and hover effects.
+
+## Technologies Used
+- **React**: UI library (Functional components & hooks)
+- **TypeScript**: Static typing for safer code
+- **Vite**: Next-generation frontend tooling for fast builds and HMR
+- **React Router**: Client-side routing (`react-router-dom`)
+- **Vanilla CSS**: Clean, custom CSS using variables for theming
+
+## Folder Structure
+```text
+src/
+├── components/
+│   ├── elements/      # Smallest reusable components (e.g., Button)
+│   ├── cards/         # Composite components (e.g., Card)
+│   └── layout/        # Structure components (e.g., Header, Navbar, Footer)
+├── pages/             # Page components (Home, About)
+├── assets/            # Static assets (images, icons)
+├── styles/            # Global styles and CSS variables
+├── utils/             # Helper functions
+├── types/             # Global TypeScript interfaces
+├── App.tsx            # Main application component & routing
+└── main.tsx           # Entry point
+```
+
+## Installation & Setup
+
+1. **Clone the repository** and navigate into the folder.
 2. **Install dependencies**:
    ```bash
    npm install
-   # or
-   yarn install
    ```
-3. **Run the development server**:
+3. **Start the development server**:
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
-4. Open [http://localhost:5173](http://localhost:5173) in your browser to view the application.
+   Open `http://localhost:5173/` in your browser.
 
-## 🏗️ Redux Folder Structure Explanation
+## Commands to Run
+- `npm run dev`: Starts the local development server.
+- `npm run build`: Compiles the TypeScript code and builds the project for production.
 
-The state management architecture is strictly divided to ensure modularity and separation of concerns. **No direct API calls (`axios` or `fetch`) are made inside React components.**
+## Routing Information
+The application uses `BrowserRouter` with the following routes configured:
+- `/` - Home Page: Displays key features using Card components.
+- `/about` - About Page: Provides information regarding project goals and architecture.
 
-```text
-src/
- ├── api/
- │    ├── config/          # Centralized Axios client configuration
- │    ├── posts/           # API fetch functions & types for posts
- │    ├── users/           # API fetch functions & types for users
- │    └── comments/        # API fetch functions & types for comments
- │
- ├── store/
- │    ├── index.ts         # Main Redux store configuration
- │    ├── hooks.ts         # Typed useSelector and useDispatch hooks
- │    ├── slices/          # Redux slices managing loading, error, and data states
- │    └── thunks/          # createAsyncThunk logic to handle async API lifecycle
-```
-
-### How Data Flows:
-1. **Thunks (`store/thunks/posts.thunk.ts`)**: The component dispatches a thunk (`fetchPosts()`).
-2. **API Layer (`api/posts/posts.api.ts`)**: The thunk calls the isolated API function, which uses the centralized `axios` instance to fetch data from `https://jsonplaceholder.typicode.com`.
-3. **Slices (`store/slices/posts.slice.ts`)**: The slice listens to the thunk's lifecycle hooks (`pending`, `fulfilled`, `rejected`) and updates the state variables (`loading`, `data`, `error`) accordingly.
-4. **Components (`components/BlogList.tsx`)**: The UI subscribes to the Redux store via `useAppSelector` and displays Skeleton loaders, Error messages, or the final Blog Cards based on the state.
-
-## 🌟 Key Features
-
-- **Strict Redux Toolkit Integration**: 100% of data fetching routes through Redux `createAsyncThunk`.
-- **Pixel-Perfect UI**: The Hero, Navigation, and Category bars match the exact spatial requirements of the reference designs.
-- **Hover Animations**: All blog cards and interactive buttons feature smooth CSS transition lifts (`-translate-y-1`) and shadow expansions.
-- **TypeScript Strictness**: Interfaces (`PostsState`, `Post`) are strictly defined. No TypeScript errors.
-- **Loading & Error Handling**: Beautiful skeleton loaders render while data is fetching, with fallback UI for network errors.
-- **Responsive Layout**: Adapts flawlessly from mobile viewports up to `1380px` ultra-wide monitors.
-
-## 📸 Screenshots
-
-*(Attach screenshots of the Blog Home Page, Responsive Views, and Redux DevTools structure here prior to submission as per the rubric)*
+## Component Overview
+- **Header & Navbar**: Located in `src/components/layout`. The Navbar utilizes `NavLink` to highlight the active route.
+- **Button**: A highly reusable element supporting text, onClick handlers, button types, and disabled states.
+- **Card**: A display component demonstrating composition by rendering a title, description, and the reusable Button.
